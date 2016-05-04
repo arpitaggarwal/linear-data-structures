@@ -21,6 +21,13 @@ public class DeleteInLinkedList {
 		list.deleteNode(node2);
 		System.out.println("\nDeleting Node..");
 		list.printList();
+		System.out.println("\nDeleting Node for position..");
+		list.deleteNodeOnPosition(0);
+		list.printList();
+		System.out.println("\nDeleting Node for position using while loop..");
+		list.deleteNodeOnPositionWhileLoop(2);
+		list.printList();
+
 	}
 
 	private Node deleteNode(Node node) {
@@ -41,6 +48,58 @@ public class DeleteInLinkedList {
 			}
 			tmp = head.next;
 		}
+		return tmp;
+	}
+
+	/**
+	 * Reference :
+	 * http://geeksquiz.com/delete-a-linked-list-node-at-a-given-position/
+	 * 
+	 * @param position
+	 * @return
+	 */
+	private Node deleteNodeOnPosition(int position) {
+		if (head == null) {
+			return null;
+		}
+		Node tmp = head;
+		if (position == 0) {
+			tmp = head.next;
+			head = tmp;
+			return tmp;
+		}
+
+		for (int i = 0; i < position - 1; i++) {
+			tmp = tmp.next;
+		}
+
+		// If position is more than number of nodes
+		if (tmp == null || tmp.next == null)
+			return null;
+
+		Node next = tmp.next.next;
+		tmp.next = next;
+		return tmp;
+	}
+
+	private Node deleteNodeOnPositionWhileLoop(int position) {
+		if (head == null) {
+			return null;
+		}
+		Node tmp = head;
+		if (position == 0) {
+			tmp = head.next;
+			head = tmp;
+			return tmp;
+		}
+		int count = 0;
+		Node previous = null;
+		while (tmp != null && count != position) {
+			previous = tmp;
+			tmp = tmp.next;
+			count++;
+		}
+		previous.next = tmp.next;
 		return tmp;
 	}
 

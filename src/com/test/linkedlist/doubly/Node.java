@@ -1,11 +1,11 @@
 package com.test.linkedlist.doubly;
 
-public class Node {
-	public int element;
-	public Node next;
-	public Node prev;
+public class Node<T> {
+	public T element;
+	public Node<T> next;
+	public Node<T> prev;
 
-	public Node(int element, Node next, Node prev) {
+	public Node(T element, Node<T> next, Node<T> prev) {
 		this.element = element;
 		this.next = next;
 		this.prev = prev;
